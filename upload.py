@@ -22,7 +22,6 @@ credentials = ServiceAccountCredentials.from_json_keyfile_name("secret.json", sc
 sheet = gspread.authorize(credentials)
 rawsheet = sheet.open(os.getenv("RAW_SHEET"))
 formatedsheet = sheet.open(os.getenv("FORMATED_SHEET"))
-# opengooglesheet = sheet.open_by_key('1OY64Ud0fZaftuAJMoMVDX54-qFhYRCqqpoSkJob2Jd4')
 formatedsheet.add_worksheet(title=date_formated, rows= 10000, cols= 100)
 
 def main (argv):
@@ -30,7 +29,6 @@ def main (argv):
     with open(inputfile, 'rb') as file:
         content = file.read()
         sheet.import_csv(rawsheet.id, content)
-# print(opengooglesheet.worksheet(title=date_formated))
     allvalues = rawsheet.worksheet("Raw").get_all_values()
     formatedsheet.worksheet(title=date_formated).update(allvalues)
 
