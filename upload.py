@@ -29,7 +29,7 @@ def main (argv):
     with open(inputfile, 'rb') as file:
         content = file.read()
         sheet.import_csv(rawsheet.id, content)
-    allvalues = rawsheet.worksheet("Raw").get_all_values()
+    allvalues = rawsheet.worksheet(os.getenv("RAW_SHEET")).get_all_values()
     formatedsheet.worksheet(title=date_formated).update(allvalues)
 
 if __name__ == "__main__":
