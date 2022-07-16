@@ -9,7 +9,6 @@ import datetime
 from dateutil.relativedelta import relativedelta
 import dotenv
 import sys
-
 dotenv.load_dotenv()
 
 scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
@@ -31,6 +30,5 @@ def main (argv):
         sheet.import_csv(rawsheet.id, content)
     allvalues = rawsheet.worksheet(os.getenv("RAW_SHEET")).get_all_values()
     formatedsheet.worksheet(title=date_formated).update(allvalues)
-
 if __name__ == "__main__":
    main(sys.argv[1:])
